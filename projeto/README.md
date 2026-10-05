@@ -327,83 +327,87 @@ O ideal é executar cada configuração pelo menos 10 vezes e posteriormente cal
 
 ## Processador
 
-```text
-12th Gen Intel(R) Core(TM) i5-1245U
+```text id="4o5ue3"
+AMD Ryzen 7 5700X 8-Core Processor
 ```
 
 ## Arquitetura
 
-```text
+```text id="q1l8hm"
 x86_64
 ```
 
 ## CPUs lógicas disponíveis
 
-```text
-12
+```text id="2f8ijb"
+16
 ```
 
 ## Núcleos reportados
 
-```text
-6
+```text id="3jbp78"
+8
 ```
 
 ## Threads por núcleo
 
-```text
+```text id="mdfpef"
 2
 ```
 
 ## Socket
 
-```text
+```text id="qv8w8h"
 1
 ```
 
 ## Cache
 
-```text
-L1d: 288 KiB
-L1i: 192 KiB
-L2: 7,5 MiB
-L3: 12 MiB
+```text id="upgy02"
+L1d: 256 KiB (8 instâncias)
+L1i: 256 KiB (8 instâncias)
+L2: 4 MiB (8 instâncias)
+L3: 32 MiB (1 instância)
 ```
 
 ## Memória RAM
 
-```text
+O computador possui 32 GB de memória RAM física instalada. Entretanto, como os experimentos foram executados através do WSL 2, o ambiente Linux utilizado nos testes reportou:
+
+```text id="xbq4ei"
 15 GiB
 ```
 
 No momento da medição:
 
-```text
-Usada:       aproximadamente 7,0 GiB
-Livre:       aproximadamente 4,0 GiB
-Disponível:  aproximadamente 8,4 GiB
+```text id="3bfvwm"
+Usada:       aproximadamente 654 MiB
+Livre:       aproximadamente 14 GiB
+Disponível:  aproximadamente 14 GiB
 ```
 
 ## Swap
 
-```text
-4 GiB
+```text id="5fwx54"
+Total:       4,0 GiB
+Usada:       0 B
+Livre:       4,0 GiB
 ```
 
 ## Ambiente de virtualização
 
-O programa foi executado em Linux através do WSL.
+O programa foi executado em Windows 11 através do WSL 2 (Windows Subsystem for Linux).
 
 O sistema reportou:
 
-```text
+```text id="1wplio"
 Hypervisor vendor: Microsoft
 Virtualization type: full
 ```
 
-Essa informação deve ser registrada porque o uso do WSL e de virtualização pode introduzir alguma variabilidade nos resultados.
+Essa informação deve ser registrada porque o uso do WSL 2 e de virtualização pode introduzir variabilidade nos resultados experimentais.
 
-Para os experimentos finais, o ideal é utilizar sempre o mesmo ambiente.
+Para garantir maior consistência e comparabilidade entre as execuções, os experimentos finais devem ser realizados sempre no mesmo ambiente e na mesma máquina.
 
 ---
 
@@ -411,23 +415,33 @@ Para os experimentos finais, o ideal é utilizar sempre o mesmo ambiente.
 
 Foi utilizado:
 
-```text
-GCC 13.3.0
+```text id="20h44k"
+GCC 15.2.0
 ```
 
 Identificação completa:
 
-```text
-gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+```text id="cy93cg"
+gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0
 ```
 
-Comando utilizado:
+Para a versão sequencial, foi utilizado o comando:
 
-```bash
+```bash id="q1qssr"
 gcc -O2 -std=c11 -Wall -Wextra merge_sort_seq.c -o merge_sort_seq
 ```
 
----
+Para a versão OpenMP:
+
+```bash id="r28h3b"
+gcc -O2 -std=c11 -Wall -Wextra -fopenmp merge_sort_omp.c -o merge_sort_omp
+```
+
+Para a versão Pthreads:
+
+```bash id="hdszzw"
+gcc -O2 -std=c11 -Wall -Wextra -pthread merge_sort_pthreads.c -o merge_sort_pthreads
+```
 
 # 15. Consumo teórico de memória
 
