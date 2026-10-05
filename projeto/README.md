@@ -323,87 +323,95 @@ O ideal é executar cada configuração pelo menos 10 vezes e posteriormente cal
 
 ---
 
-# 13. Ambiente experimental preliminar
+# 13. Ambiente experimental
 
 ## Processador
 
-```text
-12th Gen Intel(R) Core(TM) i5-1245U
+```text id="32fmre"
+AMD Ryzen 7 5700X 8-Core Processor
 ```
 
 ## Arquitetura
 
-```text
+```text id="9miycp"
 x86_64
 ```
 
 ## CPUs lógicas disponíveis
 
-```text
-12
+```text id="j8qngy"
+16
 ```
 
-## Núcleos reportados
+## Núcleos físicos
 
-```text
-6
+```text id="5te25n"
+8
 ```
 
 ## Threads por núcleo
 
-```text
+```text id="37bl1d"
 2
 ```
 
 ## Socket
 
-```text
+```text id="f54mub"
 1
 ```
 
 ## Cache
 
-```text
-L1d: 288 KiB
-L1i: 192 KiB
-L2: 7,5 MiB
-L3: 12 MiB
+```text id="8gwrrx"
+L1d: 256 KiB (8 instâncias)
+L1i: 256 KiB (8 instâncias)
+L2: 4 MiB (8 instâncias)
+L3: 32 MiB (1 instância)
 ```
 
 ## Memória RAM
 
-```text
+O computador possui 32 GB de memória RAM física instalada. Entretanto, como os experimentos foram executados através do WSL 2, o ambiente Linux utilizado nos testes reportou:
+
+```text id="h6rb6p"
 15 GiB
 ```
 
-No momento da medição:
+No momento do registro do ambiente:
 
-```text
-Usada:       aproximadamente 7,0 GiB
-Livre:       aproximadamente 4,0 GiB
-Disponível:  aproximadamente 8,4 GiB
+```text id="y9p1jo"
+Usada:       aproximadamente 617 MiB
+Livre:       aproximadamente 14 GiB
+Disponível:  aproximadamente 14 GiB
 ```
 
 ## Swap
 
-```text
-4 GiB
+```text id="8m3rnl"
+Total:       4,0 GiB
+Usada:       0 B
+Livre:       4,0 GiB
 ```
 
-## Ambiente de virtualização
+## Sistema operacional e ambiente de virtualização
 
-O programa foi executado em Linux através do WSL.
+Os experimentos foram executados em Windows 11 através do WSL 2 (Windows Subsystem for Linux).
 
-O sistema reportou:
+O ambiente Linux reportou:
 
-```text
+```text id="ojflm7"
+Linux 6.6.87.2-microsoft-standard-WSL2
+```
+
+O sistema também reportou:
+
+```text id="mfnfpa"
 Hypervisor vendor: Microsoft
 Virtualization type: full
 ```
 
-Essa informação deve ser registrada porque o uso do WSL e de virtualização pode introduzir alguma variabilidade nos resultados.
-
-Para os experimentos finais, o ideal é utilizar sempre o mesmo ambiente.
+O uso do WSL 2 e de virtualização deve ser considerado na análise, pois pode introduzir alguma variabilidade nas medições. Para manter a consistência dos resultados, todos os experimentos finais foram realizados na mesma máquina e no mesmo ambiente.
 
 ---
 
@@ -411,21 +419,35 @@ Para os experimentos finais, o ideal é utilizar sempre o mesmo ambiente.
 
 Foi utilizado:
 
-```text
-GCC 13.3.0
+```text id="w38iyj"
+GCC 15.2.0
 ```
 
 Identificação completa:
 
-```text
-gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+```text id="htz1mk"
+gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0
 ```
 
-Comando utilizado:
+Para a versão sequencial:
 
-```bash
+```bash id="yzcy5n"
 gcc -O2 -std=c11 -Wall -Wextra merge_sort_seq.c -o merge_sort_seq
 ```
+
+Para a versão OpenMP:
+
+```bash id="wd2n9x"
+gcc -O2 -std=c11 -Wall -Wextra -fopenmp merge_sort_omp.c -o merge_sort_omp
+```
+
+Para a versão Pthreads:
+
+```bash id="jnzdg0"
+gcc -O2 -std=c11 -Wall -Wextra -pthread merge_sort_pthreads.c -o merge_sort_pthreads
+```
+
+O ambiente experimental foi registrado em `resultados/ambiente.txt` antes da execução dos testes.
 
 ---
 
